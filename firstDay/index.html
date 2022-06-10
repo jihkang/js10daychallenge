@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+    }
+
+
+    .fs-40 {
+      font-size: 40px;
+    }
+
+    #display-star {
+      font-size: 60px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="star">
+    <ul>
+      <li id=0>
+        <i class="fa fa-star-o fs-40"></i>
+      </li>
+      <li id=1>
+        <i class="fa fa-star-o fs-40"></i>
+      </li>
+      <li id=2>
+        <i class="fa fa-star-o fs-40"></i>
+      </li>
+      <li id=3>
+        <i class="fa fa-star-o fs-40"></i>
+      </li>
+      <li id=4>
+        <i class="fa fa-star-o fs-40"></i>
+      </li>
+    </ul>
+  </div>
+  <div id="display-star">
+  </div>
+  <script>
+    const ul = document.querySelector("ul");
+    const print = document.querySelector("#display-star");
+
+    function hoverStar(e) {
+      ul.querySelectorAll("li").forEach((item, i) => {
+        if (e.target.classList.contains("fa")) {
+          const li = e.target.closest("li");
+          const star = item.querySelector("i");
+          if (i <= li.id) {
+            star.classList.remove("fa-star-o");
+            star.classList.add("fa-star");
+          } else {
+            star.classList.remove("fa-star");
+            star.classList.add("fa-star-o");
+          }
+        }
+      })
+    }
+    ul.addEventListener("click", (e) => {
+      hoverStar(e);
+      const li = e.target.closest("li");
+      print.innerText = parseInt(li.id) + 1;
+    })
+    ul.addEventListener("pointermove", (e) => hoverStar(e));
+  </script>
+</body>
+
+</html>
